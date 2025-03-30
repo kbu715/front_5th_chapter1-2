@@ -1,9 +1,4 @@
-const nonRenderableTypes = ["null", "undefined", "boolean"];
-
-function getType(value) {
-  if (value === null) return "null";
-  return typeof value;
-}
+import { getType, nonRenderableTypes } from "../utils";
 
 export function normalizeVNode(vNode) {
   const type = getType(vNode);
@@ -27,7 +22,7 @@ export function normalizeVNode(vNode) {
   }
 
   // 일반 DOM VNode 처리
-  if (type === "object" && "type" in vNode) {
+  if (type === "object" && typeof vNode.type === "string") {
     return {
       ...vNode,
       children: normalizeChildren(vNode.children),
@@ -37,7 +32,7 @@ export function normalizeVNode(vNode) {
   return vNode;
 }
 
-function normalizeChildren(children) {
+export function normalizeChildren(children) {
   const result = [];
 
   const flatten = (child) => {

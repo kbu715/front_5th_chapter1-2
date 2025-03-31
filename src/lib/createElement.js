@@ -1,4 +1,4 @@
-// import { addEvent } from "./eventManager";
+import { addEvent } from "./eventManager";
 import { getType, nonRenderableTypes } from "../utils";
 
 export function createElement(vNode) {
@@ -25,7 +25,10 @@ export function createElement(vNode) {
 
     if (vNode.props) {
       for (const [key, value] of Object.entries(vNode.props)) {
-        if (/^data-/.test(key)) {
+        if (/^on[A-Z]/.test(key) && typeof value === "function") {
+          const eventType = key.slice(2).toLowerCase();
+          addEvent($el, eventType, value);
+        } else if (/^data-/.test(key)) {
           $el.dataset[key.replace(/^data-/, "")] = value;
         } else if (typeof value === "boolean") {
           if (value) {
@@ -47,4 +50,3 @@ export function createElement(vNode) {
     return $el;
   }
 }
-// function updateAttributes($el, props) {}

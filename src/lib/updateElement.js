@@ -16,7 +16,12 @@ function updateAttributes(target, originNewProps, originOldProps) {
       }
       continue;
     }
-    target.setAttribute(attr, value);
+    // className → class 변환
+    if (attr === "className") {
+      target.setAttribute("class", value);
+    } else {
+      target.setAttribute(attr, value);
+    }
   }
 
   // 없어진 props를 attribute에서 제거
@@ -30,7 +35,11 @@ function updateAttributes(target, originNewProps, originOldProps) {
       }
       continue;
     }
-    target.removeAttribute(attr);
+    if (attr === "className") {
+      target.removeAttribute("class");
+    } else {
+      target.removeAttribute(attr);
+    }
   }
 }
 

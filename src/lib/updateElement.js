@@ -44,6 +44,9 @@ function updateAttributes(target, originNewProps, originOldProps) {
 }
 
 export function updateElement(parentElement, newNode, oldNode, index = 0) {
+  if (!parentElement) {
+    return;
+  }
   // 1. oldNode만 있는 경우
   if (!newNode && oldNode) {
     return parentElement.removeChild(parentElement.childNodes[index]);

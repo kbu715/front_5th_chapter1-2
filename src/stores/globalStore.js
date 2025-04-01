@@ -53,14 +53,6 @@ export const globalStore = createStore(
       userStorage.reset();
       return { ...state, currentUser: null, loggedIn: false };
     },
-    isPostLiked(state, id) {
-      if (!state.loggedIn) return false;
-
-      const currentUsername = state.currentUser?.username;
-      const postIdx = state.posts.findIndex((post) => post.id === id);
-      const isLiked = state.posts[postIdx].likeUsers.includes(currentUsername);
-      return { ...state, isLiked };
-    },
 
     toggleLike(state, id, isLiked) {
       const currentUsername = state.currentUser?.username;

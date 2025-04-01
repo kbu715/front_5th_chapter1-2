@@ -1,5 +1,4 @@
 {
-	"homepage": "https://github.com/kbu715/front_5th_chapter1-2",
 	"name": "front-5th-chapter1-2",
 	"private": true,
 	"version": "0.0.0",
@@ -11,7 +10,7 @@
 	"scripts": {
 		"dev": "vite",
 		"dev:hash": "vite --open ./index.hash.html",
-		"build": "vite build",
+		"build": "vite build && cp dist/index.html dist/404.html",
 		"lint:fix": "eslint --fix",
 		"prettier:write": "prettier --write ./src",
 		"preview": "vite preview",
@@ -23,13 +22,13 @@
 		"test:e2e:ui": "playwright test --ui",
 		"test:e2e:report": "npx playwright show-report",
 		"test:generate": "playwright codegen localhost:5173",
-		"prepare": "husky",
-		"build:prod": "vite build --mode production",
-		"predeploy": "pnpm run build:prod && cp dist/index.html dist/404.html",
-		"deploy": "pnpm run build && gh-pages -d dist"
+		"prepare": "husky"
 	},
 	"lint-staged": {
-		"*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix"]
+		"*.{js,jsx,ts,tsx}": [
+			"prettier --write",
+			"eslint --fix"
+		]
 	},
 	"devDependencies": {
 		"@babel/core": "^7.26.0",
@@ -44,7 +43,6 @@
 		"eslint": "^9.16.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
-		"gh-pages": "^6.3.0",
 		"globals": "^15.13.0",
 		"husky": "^9.1.7",
 		"jsdom": "^25.0.1",

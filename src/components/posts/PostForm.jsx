@@ -11,6 +11,7 @@ export const PostForm = () => {
       return;
     }
     addPost(content);
+    content.value = "";
   };
   return (
     <div className="mb-4 bg-white rounded-lg shadow p-4">
